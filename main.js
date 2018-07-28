@@ -33,6 +33,7 @@ const createTray = () => {
   tray = new Tray(path.join(assetsDirectory, '/img/icon.png'))
   tray.on('click', function (event) {
     toggleWindow()
+    autoUpdater.checkForUpdates();
   })
 }
 
