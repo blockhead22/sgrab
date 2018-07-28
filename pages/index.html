@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <script>window.$ = window.jQuery = require('./jquery-2.1.1.min.js');</script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <style>
+      body{
+        margin: 0;
+        padding: 0;
+        cursor: crosshair;
+      }
+      #overlay{
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #2C2F33;
+        height: 100%;
+        width: 100%;
+        opacity: 0.1;
+      }
+      #drawable{
+        border: 2px solid #E54826;
+        position: absolute;
+        width: 0;
+        height: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="drawable"></div>
+    <div id="overlay">
+
+    </div>
+  </body>
+
+  <script>
+  const electron = require('electron');
+  const {ipcRenderer} = require('electron');
+    console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) // prints "pong"
+
+      var isDragging = false;
+      var edgeX = 0;
+      var edgeY = 0;
+      var height = 0;
+      var width = 0;
+      var x = 0;
+      var y = 0;
+      $('#overlay').mousedown(function(e){
+        isDragging = false;
+        edgeX = e.pageX;
+        edgeY = e.pageY;
+        $('#drawable').css({top: edgeY, left: edgeX});
+        $('#overlay').mousemove(function(e){
+          isDragging = true;
+
+          x = e.pageX-edgeX;
+          y = e.pageY-edgeY;
+
+          $('#drawable').css({height: y, width: x});
+
+          console.log(isDragging);
+        })
+      }).mouseup(function(e){
+        height = x;
+        width = y;
+        console.log(height+" - "+width);
+         ipcRenderer.sendSync('crop', {x:edgeX, y:edgeY, height:height, width:width});
+         (function () {
+            // Retrieve remote BrowserWindow
+            const {BrowserWindow} = require('electron').remote
+            var window = BrowserWindow.getFocusedWindow();
+                    window.close();
+          });
+
+      });
+  </script>
+
+</html>

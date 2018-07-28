@@ -72,7 +72,7 @@ const trayWindow = () => {
         'node-integration': false
     })
     // This is where the index.html file is loaded into the window
-    window.loadURL('file://' + __dirname + '/settings.html');
+    window.loadURL('file://' + __dirname + '/pages/settings.html');
 
   // Hide the window when it loses focus
   window.on('blur', () => {
@@ -136,7 +136,7 @@ ipcMain.on('show-window', () => {
   })
 
     // and load the index.html of the app.
-    win.loadFile('index.html')
+    win.loadFile('pages/index.html')
     win.setFullScreen(true)
     win.setFullScreenable(false)
     win.setResizable(false)
@@ -154,7 +154,7 @@ ipcMain.on('show-window', () => {
   })
 
     // and load the index.html of the app.
-    win.loadFile('uploaded.html')
+    win.loadFile('pages/uploaded.html')
     win.setPosition(0,0);
   }
 
