@@ -6,7 +6,7 @@ const fs = require('fs');
 const imgurUploader = require('imgur-uploader');
 const {clipboard} = require('electron')
 const path = require('path')
-const assetsDirectory = path.join(__dirname, 'img')
+const assetsDirectory = path.join(__dirname, 'pages')
 const {autoUpdater} = require("electron-updater");
 
 
@@ -30,7 +30,7 @@ app.on('window-all-closed', () => {
 
 // Creates tray image & toggles window on click
 const createTray = () => {
-  tray = new Tray(path.join(assetsDirectory, 'icon.png'))
+  tray = new Tray(path.join(assetsDirectory, '/img/icon.png'))
   tray.on('click', function (event) {
     toggleWindow()
   })
