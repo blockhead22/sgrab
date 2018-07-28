@@ -7,16 +7,6 @@ const imgurUploader = require('imgur-uploader');
 const {clipboard} = require('electron')
 const path = require('path')
 const assetsDirectory = path.join(__dirname, 'img')
-import { autoUpdater } from "electron-updater"
-
-export default class AppUpdater {
-  constructor() {
-    const log = require("electron-log")
-    log.transports.file.level = "debug"
-    autoUpdater.logger = log
-    autoUpdater.checkForUpdatesAndNotify()
-  }
-}
 
 let tray = undefined
 let window = undefined
@@ -236,4 +226,3 @@ ipcMain.on('show-window', () => {
     // Unregister all shortcuts.
     globalShortcut.unregisterAll()
   })
-appUpdater();

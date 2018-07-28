@@ -2,17 +2,20 @@
   "name": "Sgrab",
   "version": "0.4.2",
   "main": "main.js",
-  "description":"Screenshot grabber",
-  "author":"Nick Block",
+  "description": "Screenshot grabber",
+  "author": "Nick Block",
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "gh-publish":"electron-builder -w -p always"
+    "dist": "build -mwl --x64 --ia32",
+    "gh-publish": "electron-builder -w -p always"
   },
   "build": {
     "win": {
-      "publish": ["github", "bintray"],
+      "publish": [
+        "github",
+        "bintray"
+      ],
       "target": [
         {
           "target": "nsis",
