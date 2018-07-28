@@ -7,6 +7,8 @@ const imgurUploader = require('imgur-uploader');
 const {clipboard} = require('electron')
 const path = require('path')
 const assetsDirectory = path.join(__dirname, 'img')
+const {autoUpdater} = require("electron-updater");
+
 
 let tray = undefined
 let window = undefined
@@ -18,7 +20,7 @@ let window = undefined
 app.on('ready', () => {
   createTray()
   trayWindow()
-
+  autoUpdater.checkForUpdates();
 })
 
 // Quit the app when the window is closed
@@ -225,4 +227,14 @@ ipcMain.on('show-window', () => {
 
     // Unregister all shortcuts.
     globalShortcut.unregisterAll()
+  })
+
+  // when the update has been downloaded and is ready to be installed, notify the BrowserWindow
+  autoUpdater.on('update-downloaded', (info) => {
+      console.log('updateReady')
+  });
+
+  // when receiving a quitAndInstall signal, quit and install the new version ;)
+  ipcMain.on("quitAndInstall", (event, arg) => {
+      autoUpdater.quitAndInstall();
   })
