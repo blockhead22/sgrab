@@ -231,7 +231,7 @@ ipcMain.on('show-window', () => {
 
   // when the update has been downloaded and is ready to be installed, notify the BrowserWindow
   autoUpdater.on('update-downloaded', (info) => {
-      console.log('updateReady')
+      tray.webContents.send('updateReady')
   });
 
   // when receiving a quitAndInstall signal, quit and install the new version ;)
