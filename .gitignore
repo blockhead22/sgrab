@@ -1,2 +1,8 @@
-node_modules/
-electron-builder.yml
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+/dist

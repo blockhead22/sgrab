@@ -1,0 +1,4 @@
+appId: com.sgrab.screengrab
+publish:
+    provider: github
+    token: 'b143d29484fee5b64db4a3afdf6839be94f4f9d4'

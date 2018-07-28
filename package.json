@@ -1,26 +1,14 @@
 {
   "name": "Sgrab",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "main": "main.js",
   "description": "Screenshot grabber",
   "author": "Nick Block",
-  "repository": "https://github.com/UserName/RepoName",
+  "repository": "https://github.com/blockhead22/sgrab",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
     "build": "build --win",
     "ship": "build --win -p always"
-  },
-  "postinstall": "electron-builder install-app-deps",
-  "build": {
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "blockhead22",
-        "repo": "Sgrab"
-      }
-    ]
   },
   "devDependencies": {
     "electron-packager": "^12.1.0",
